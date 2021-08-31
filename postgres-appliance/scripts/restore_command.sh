@@ -41,7 +41,7 @@ fi
 
 [[ $POOL_SIZE -gt 8 ]] && POOL_SIZE=8
 
-if [[ -z $WALE_S3_PREFIX ]]; then  # non AWS environment?
+if [[ $AWS_ENDPOINT ]]; then  # non AWS environment?
     readonly wale_prefetch_source=${wal_dir}/.wal-e/prefetch/${wal_filename}
     if [[ -f $wale_prefetch_source ]]; then
         exec mv "${wale_prefetch_source}" "${wal_destination}"
